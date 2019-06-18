@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import validacija.ValidacijaZaRegistraciju;
+
 /**
  * Servlet implementation class RegistracioniServlet
  */
@@ -27,9 +29,16 @@ public class RegistracioniServlet extends HttpServlet {
 		String repeatedPassword = request.getParameter("repeatedPassword");
 		
 		
-		System.out.println("vas un je: " + userName);
-		System.out.println("vas password je: " + password);
-		System.out.println("vas ponovljeni password je: " + repeatedPassword);
+		boolean provera = ValidacijaZaRegistraciju.proveraPassworda(password, repeatedPassword);
+		
+		if(provera) {
+			// upisi usera u bazu
+			response.sendRedirect("index.html");
+		}else {
+			response.sendRedirect("registracija.html");
+		}
+		
+		
 		
 	}
 
