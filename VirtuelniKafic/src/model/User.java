@@ -3,13 +3,25 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class User {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idUser;
 	private String userName;
 	private String password;
 	private double novcanik;
+	@OneToMany
 	private List<Racun> listaRacuna = new ArrayList<Racun>();
+	@Embedded
 	private Rola rola;
 	
 	public long getIdUser() {
