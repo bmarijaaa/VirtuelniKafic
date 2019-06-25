@@ -1,19 +1,14 @@
 package model;
 
-import javax.persistence.Embeddable;
+import javax.xml.bind.annotation.XmlEnum;
 
-@Embeddable
-public class Rola {
-	
-	private String uloga;
-	
-	public String getUloga() {
-		return uloga;
-	}
+@XmlEnum
+public enum Rola {
 
-	public void setUloga(String uloga) {
-		this.uloga = uloga;
+	ADMINISTRATOR, 
+	KORISNIK;
+
+	Rola(){
+		
 	}
-	
-	
 }
