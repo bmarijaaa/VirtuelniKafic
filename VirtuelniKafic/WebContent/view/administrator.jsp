@@ -1,5 +1,13 @@
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>   
+    
+<%@ page import="model.User" %>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.AdminDAO"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,27 +15,43 @@
 <title>administrator page</title>
 </head>
 <body>
-	<h1>DOBRODOŠLI ADMIN </h1>
+
+	<%
+		User user = (User)session.getAttribute("ovdeJeUserObjekat");
+	%>
+	
+	<h1>DOBRODOŠLI <%=user.getUserName() %> </h1>
 	
 	<p>Ovo je administratorova strana. Ovde cu ubaciti stvari koje se ticu administratorskih poslova</p>
 	
+	
 	<%
-	int a = 5;
-	int b = 3;
-	
-	int rez = a + b;
-	String tekst = "Ovo je moj tekst u javi!";
-	
+		List<User> listaUsera = new ArrayList<User>();
+		listaUsera = AdminDAO.vratiSveUsere();
+		
 	%>
 	
-	Adminov omiljeni broj je: <%=rez %> <br>
-	A tekst je: <%=tekst %><br>
 	
-	<% for(int i = 1; i<=5;i++){ %>
-	
-	BROJ: <%=i %><br>
-	
-	<%} %>
+	<table border="1">
+		<tr>
+			<th> ID        </th>
+			<th> USER NAME </th>
+			<th> PASSWORD  </th>
+			<th> NOVCANIK  </th>
+		</tr>
+		<%
+			for(User u: listaUsera){
+		%>
+			<tr>
+				<td> <%= u.getIdUser()   %> </td>
+				<td> <%= u.getUserName() %> </td>
+				<td> <%= u.getPassword() %> </td>
+				<td> <%= u.getNovcanik() %> </td>
+			</tr>
+		<%
+			}
+		%>
+	</table>
 	
 </body>
 </html>

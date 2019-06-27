@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.LoginDAO;
 import model.Rola;
@@ -37,6 +38,8 @@ public class LoginServlet extends HttpServlet {
 				
 					if(proveriPassword) {
 						user = loginDAO.vratiUsera(userName);
+						HttpSession session = request.getSession();
+						session.setAttribute("ovdeJeUserObjekat", user);
 							if(user.getRola().equals(Rola.ADMINISTRATOR)) {
 								response.sendRedirect("view/administrator.jsp");
 							}else {
