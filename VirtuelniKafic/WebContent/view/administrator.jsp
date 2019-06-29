@@ -24,6 +24,11 @@
 	
 	<p>Ovo je administratorova strana. Ovde cu ubaciti stvari koje se ticu administratorskih poslova</p>
 	
+	<a href = "addBalance.jsp"><button>ADD BALANCE</button></a>
+	<a href = "addArtikal.jsp"><button>ADD ARTIKAL</button></a><br><br>
+	
+	<hr>
+	<br>
 	
 	<%
 		List<User> listaUsera = new ArrayList<User>();
