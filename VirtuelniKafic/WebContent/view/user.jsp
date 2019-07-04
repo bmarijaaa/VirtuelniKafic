@@ -25,7 +25,7 @@
 		UserDAO userDAO = new UserDAO();
 		List<Artikal> listaArtikala = userDAO.vratiSveArtikle();
 	%>
-	<form>
+	<form action="../PlatiRacunServlet" method="get">
 		<table border="1">
 			<tr>
 				<th>id</th>
@@ -47,7 +47,7 @@
 					<td>
 						<select name="kolicina">
 							<%
-								for(int i = 1; i<= a.getStanje(); i++){
+								for(int i = 0; i<= a.getStanje(); i++){
 							%>
 								<option value="<%=i %>"><%=i %></option>
 							<% 
