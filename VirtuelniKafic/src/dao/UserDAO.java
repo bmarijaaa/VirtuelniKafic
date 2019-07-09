@@ -38,20 +38,17 @@ public class UserDAO {
 		}
 	}
 	
-	public List<Artikal> artikliSaRacuna(String[] check){
+	public List<Artikal> artikliSaRacuna(String[]check){
 		
 		List<Artikal> listaArtikala = new ArrayList<Artikal>();
 		
 		Session session = sf.openSession();
 		session.beginTransaction();
 			try {
-				Query query;
-				for(int i = 0; i<check.length; i++) {
+				for(int i = 0; i<check.length;i++) {	
+					long id = Long.parseLong(check[i]);
 					Artikal artikal = new Artikal();
-					int id = Integer.parseInt(check[i]);
-					query = session.createQuery("FROM Artikal WHERE idArtikal = :id");
-					query.setParameter("id", id);
-					artikal = (Artikal)query.getResultList().get(i);
+					artikal = session.get(Artikal.class,id);
 					listaArtikala.add(artikal);
 				}
 				session.getTransaction().commit();
@@ -62,8 +59,8 @@ public class UserDAO {
 		}finally {
 			session.close();
 		}
-			
 	}
+			
 	
 	public Racun sacuvajRacun(User user, Date date, List<Artikal>listaArtikala) {
 		
@@ -89,16 +86,10 @@ public class UserDAO {
 	public double iznosRacuna(List<Artikal>listaArtikala, List<String> listaKolicina) {
 		
 		double rez = 0.0;
-		int velicina = listaArtikala.size();
-		if(velicina != 0) {
-			for(int i = 0; i<velicina; i++) {
+			for(int i = 0; i<listaArtikala.size(); i++) {
 				rez = rez + listaArtikala.get(i).getCena() * Integer.parseInt(listaKolicina.get(i)) *(100-listaArtikala.get(i).getPopust())/100;
 			}
 			return rez;
-		}else {
-			return 500;
-		}
-
 	}
 	
 	public void apdejtujNovcanik(User user, double totalPrice) {

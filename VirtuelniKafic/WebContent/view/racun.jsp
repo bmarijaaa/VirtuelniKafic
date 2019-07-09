@@ -12,12 +12,12 @@
 </head>
 <body>
 <% 	User user =  (User)session.getAttribute("ovdeJeUserObjekat"); 
-	int totalPrice = (Integer)request.getAttribute("totalPrice");
+	double totalPrice = (Double)request.getAttribute("totalPrice");
 	List<Artikal> listaArtikala = (List<Artikal>)request.getAttribute("listaArtikala");
 	List<String> listaKolicina = (List<String>)request.getAttribute("listaKolicina");
 %>
 User: <%=user.getUserName() %> <br><br>
-Racun:  <table>
+Racun:  <table border="1">
 			<tr>
 				<th>ime artilka</th>
 				<th>cena</th>
@@ -38,7 +38,7 @@ Racun:  <table>
 
 Total price:<%=totalPrice %> <br><br>
 
-<a href="user.jsp">back to user</a>
+<a href="view/user.jsp">back to user</a>
 
 </body>
 </html>

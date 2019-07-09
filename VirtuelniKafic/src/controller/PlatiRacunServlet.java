@@ -38,15 +38,8 @@ public class PlatiRacunServlet extends HttpServlet {
 			
 			List<String> listaKolicina = uv.urediKolicinu(kolicina);
 			List<Artikal> listaArtikala = ud.artikliSaRacuna(check);
-			
-			for(int i = 0; i<listaKolicina.size(); i++) {
-				System.out.println(listaArtikala.get(i).getImeArtikla());
-				System.out.println(listaKolicina.get(i));
-			}
-			
+				
 			double totalPrice = ud.iznosRacuna(listaArtikala, listaKolicina);
-			
-			System.out.println("Total:" + totalPrice);
 			
 			HttpSession session = request.getSession();
 			User user = (User)session.getAttribute("ovdeJeUserObjekat");
